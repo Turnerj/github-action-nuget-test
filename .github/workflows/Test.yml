@@ -24,10 +24,17 @@ jobs:
         include:
           - test-number: 1
             os: ubuntu-latest
+          - test-number: 6
+            os: ubuntu-latest
       fail-fast: false
     steps:
     - name: Checkout
       uses: actions/checkout@v2
+    - name: Setup dotnet 5.0 (Used as a delay to the test)
+      if: matrix.test-number == 6 || matrix.test-number == 7 || matrix.test-number == 8 || matrix.test-number == 9 || matrix.test-number == 10
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '5.0.x'
     - name: NuGet Locals
       run: nuget locals all -list
     - name: NuGet Config (.nuget/NuGet) (if available - Ubuntu only)
