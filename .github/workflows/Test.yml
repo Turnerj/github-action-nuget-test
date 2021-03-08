@@ -26,7 +26,7 @@ jobs:
     - name: NuGet Locals
       run: nuget locals all -list
     - name: NuGet Home Folder
-      run: la -la ~/.nuget
+      run: ls -la ~/.nuget
       shell: bash
     - name: Default NuGet.Config (if available)
       run: "[[ ! -f ~/.nuget/NuGet/NuGet.Config ]] || cat ~/.nuget/NuGet/NuGet.Config"
