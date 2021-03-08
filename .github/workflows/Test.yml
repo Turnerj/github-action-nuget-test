@@ -20,11 +20,6 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest]
-      include:
-        - os: ubuntu-latest
-          nuget-config: ~/.nuget/NuGet/NuGet.Config
-        - os: windows-latest
-          nuget-config: %AppData%\NuGet\NuGet.Config
     steps:
     - name: Checkout
       uses: actions/checkout@v2
