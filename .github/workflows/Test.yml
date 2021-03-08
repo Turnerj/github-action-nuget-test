@@ -42,7 +42,7 @@ jobs:
       shell: bash
     - name: NuGet Config (AppData\Roaming) (if available - Windows only)
       if: matrix.os == 'windows-latest'
-      run: Get-Content "%appdata%\NuGet\NuGet.Config"
+      run: Get-Content "$env:APPDATA\NuGet\NuGet.Config"
       continue-on-error: true
       shell: pwsh
     - name: NuGet Config (VisualStudio.Offline) (if available - Windows only)
