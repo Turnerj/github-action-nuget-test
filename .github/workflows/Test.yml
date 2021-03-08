@@ -23,6 +23,8 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2
+    - name: NuGet Locals
+      run: nuget locals
     - name: View NuGet.Config
-      run: cat ~/.nuget/NuGet/NuGet.Config
+      run: "[ -f ~/.nuget/NuGet/NuGet.Config ] && cat ~/.nuget/NuGet/NuGet.Config"
       shell: bash
