@@ -28,3 +28,5 @@ jobs:
     - name: View Default NuGet.Config
       run: "[[ ! -f ~/.nuget/NuGet/NuGet.Config ]] || cat ~/.nuget/NuGet/NuGet.Config"
       shell: bash
+    - name: .NET Restore
+      run: dotnet restore
