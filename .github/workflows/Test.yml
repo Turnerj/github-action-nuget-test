@@ -28,16 +28,16 @@ jobs:
       run: nuget locals all -list
     - name: NuGet Home Folder (if available)
       run: ls -la ~/.nuget
-      if: always()
+      continue-on-error: true
       shell: bash
     - name: Default NuGet.Config (if available)
       run: cat ~/.nuget/NuGet/NuGet.Config
-      if: always()
+      continue-on-error: true
       shell: bash
     - name: Global NuGet Packages (if available)
       run: ls -la ~/.nuget/packages
-      if: always()
+      continue-on-error: true
       shell: bash
     - name: .NET Restore
       run: dotnet restore --verbosity detailed
-      if: always()
+      
