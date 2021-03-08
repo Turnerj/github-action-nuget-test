@@ -42,6 +42,16 @@ jobs:
       run: ls -la ~/.nuget/packages
       continue-on-error: true
       shell: bash
+    - name: NuGet Config (AppData\Roaming) (if available - Windows only)
+      if: matrix.os == 'windows-latest'
+      run: Get-Content C:\Users\runneradmin\AppData\Roaming\NuGet\NuGet.Config
+      continue-on-error: true
+      shell: pwsh
+    - name: NuGet Config (Visual Studio Offline) (if available - Windows only)
+      if: matrix.os == 'windows-latest'
+      run: Get-Content C:\Program Files (x86)\NuGet\Config\Microsoft.VisualStudio.Offline.config
+      continue-on-error: true
+      shell: pwsh
     - name: .NET Restore
       run: dotnet restore --verbosity detailed
       
