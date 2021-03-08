@@ -20,12 +20,13 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest, windows-latest, windows-latest]
+      fail-fast: false
     steps:
     - name: Checkout
       uses: actions/checkout@v2
     - name: NuGet Locals
       run: nuget locals all -list
-    - name: NuGet Home Folder
+    - name: NuGet Home Folder (if available)
       run: ls -la ~/.nuget
       if: always()
       shell: bash
@@ -33,7 +34,7 @@ jobs:
       run: cat ~/.nuget/NuGet/NuGet.Config
       if: always()
       shell: bash
-    - name: Global NuGet Packages
+    - name: Global NuGet Packages (if available)
       run: ls -la ~/.nuget/packages
       if: always()
       shell: bash
