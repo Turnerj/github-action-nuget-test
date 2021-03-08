@@ -35,12 +35,17 @@ jobs:
       run: cat ~/.nuget/NuGet/NuGet.Config
       continue-on-error: true
       shell: bash
+    - name: NuGet Config (.config/NuGet) (if available - Ubuntu only)
+      if: matrix.os == 'ubuntu-latest'
+      run: cat ~/.config/NuGet/NuGet.Config
+      continue-on-error: true
+      shell: bash
     - name: NuGet Config (AppData\Roaming) (if available - Windows only)
       if: matrix.os == 'windows-latest'
       run: Get-Content "%appdata%\NuGet\NuGet.Config"
       continue-on-error: true
       shell: pwsh
-    - name: NuGet Config (Visual Studio Offline) (if available - Windows only)
+    - name: NuGet Config (VisualStudio.Offline) (if available - Windows only)
       if: matrix.os == 'windows-latest'
       run: Get-Content "C:\Program Files (x86)\NuGet\Config\Microsoft.VisualStudio.Offline.config"
       continue-on-error: true
