@@ -21,19 +21,31 @@ jobs:
     runs-on: ${{matrix.os}}
     strategy:
       matrix:
-        test-number: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-        os: [windows-latest]
-        include:
-          - test-number: 1
-            os: ubuntu-latest
-          - test-number: 6
-            os: ubuntu-latest
+        test-number: [1, 2, 3, 4, 5, 6, 7]
+        os: [windows-latest, ubuntu-latest]
+#        include:
+#          - test-number: 1
+#            os: ubuntu-latest
+#          - test-number: 4
+#            os: ubuntu-latest
+#          - test-number: 7
+#            os: ubuntu-latest
       fail-fast: false
     steps:
     - name: Checkout
       uses: actions/checkout@v2
-    - name: Setup dotnet 5.0 (Used as a delay to the test)
-      if: matrix.test-number == 6 || matrix.test-number == 7 || matrix.test-number == 8 || matrix.test-number == 9 || matrix.test-number == 10
+    - name: Setup dotnet 2.1
+      if: matrix.test-number == 1 || matrix.test-number == 4 || matrix.test-number == 6 || matrix.test-number == 7
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '2.1.x'
+    - name: Setup dotnet 3.1
+      if: matrix.test-number == 2 || matrix.test-number == 4 || matrix.test-number == 5 || matrix.test-number == 7
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '3.1.x'
+    - name: Setup dotnet 5.0
+      if: matrix.test-number == 3 || matrix.test-number == 5 || matrix.test-number == 6 || matrix.test-number == 7
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: '5.0.x'
